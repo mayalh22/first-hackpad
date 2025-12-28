@@ -12,21 +12,21 @@ A simple 4-key macropad using the Seeed XIAO RP2040 and MX-style switches.
 
 ## Schematic
 
-![Schematic](path/to/schematic_screenshot.png)  
+![Schematic](schematic_screenshot.png)  
 *Schematic of the hackpad.*
 
 ---
 
 ## PCB
 
-![PCB](path/to/pcb_screenshot.png)  
+![PCB](pcb_screenshot.png)  
 *PCB layout.*
 
 ---
 
 ## Case
 
-![Case](path/to/case_screenshot.png)  
+![Case](hackpad_screenshot.png)  
 *Case for the hackpad.*
 
 ---
