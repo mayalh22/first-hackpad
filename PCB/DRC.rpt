@@ -1,0 +1,37 @@
+** Drc report for maya's hackpad.kicad_pcb **
+** Created on 2025-12-27T11:50:54-0300 **
+
+** Found 7 DRC violations **
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(111.4500 mm, 61.4625 mm): Rectangle on Edge.Cuts
+    @(128.2562 mm, 62.9138 mm): Segment of U1 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(111.4500 mm, 61.4625 mm): Rectangle on Edge.Cuts
+    @(128.2562 mm, 61.4138 mm): Segment of U1 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(111.4500 mm, 61.4625 mm): Rectangle on Edge.Cuts
+    @(132.6562 mm, 61.4138 mm): Segment of U1 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(111.4500 mm, 61.4625 mm): Rectangle on Edge.Cuts
+    @(141.6562 mm, 60.0138 mm): Segment of U1 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(111.4500 mm, 61.4625 mm): Rectangle on Edge.Cuts
+    @(141.6562 mm, 61.4138 mm): Segment of U1 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(111.4500 mm, 61.4625 mm): Rectangle on Edge.Cuts
+    @(146.0563 mm, 61.4138 mm): Segment of U1 on F.Silkscreen
+[lib_footprint_mismatch]: Footprint 'MOUDLE14P-XIAO-DIP-SMD' does not match copy in library 'XIAO_RP2040'.
+    Local override; warning
+    @(137.1562 mm, 71.9137 mm): Footprint U1
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** End of Report **
