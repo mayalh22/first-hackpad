@@ -1,35 +1,67 @@
-# You import all the IOs of your board
+import time
+from digitalio import DigitalInOut, Direction, Pull
 import board
 
-# These are imports from the kmk library
-from kmk.kmk_keyboard import KMKKeyboard
-from kmk.scanners.keypad import KeysScanner
-from kmk.keys import KC
-from kmk.modules.macros import Press, Release, Tap, Macros
+key1 = DigitalInOut(board.D2)
+key1.direction = Direction.INPUT
+key1.pull = Pull.UP
 
-# This is the main instance of your keyboard
-keyboard = KMKKeyboard()
+key2 = DigitalInOut(board.D3)
+key2.direction = Direction.INPUT
+key2.pull = Pull.UP
 
-# Add the macro extension
-macros = Macros()
-keyboard.modules.append(macros)
+key3 = DigitalInOut(board.D4)
+key3.direction = Direction.INPUT
+key3.pull = Pull.UP
 
-# Define your pins here!
-PINS = [board.D3, board.D4, board.D2, board.D1]
+key4 = DigitalInOut(board.D5)
+key4.direction = Direction.INPUT
+key4.pull = Pull.UP
 
-# Tell kmk we are not using a key matrix
-keyboard.matrix = KeysScanner(
-    pins=PINS,
-    value_when_pressed=False,
-)
+timer_running = False
+timer_start = 0
+timer_duration = 15 * 60
 
-# Here you define the buttons corresponding to the pins
-# Look here for keycodes: https://github.com/KMKfw/kmk_firmware/blob/main/docs/en/keycodes.md
-# And here for macros: https://github.com/KMKfw/kmk_firmware/blob/main/docs/en/macros.md
-keyboard.keymap = [
-    [KC.A, KC.DELETE, KC.MACRO("Hello world!"), KC.Macro(Press(KC.LCMD), Tap(KC.S), Release(KC.LCMD)),]
-]
+def start_timer(duration=None):
+    global timer_running, timer_start, timer_duration
+    timer_running = True
+    timer_start = time.monotonic()
+    if duration:
+        timer_duration = duration
 
-# Start kmk!
-if __name__ == '__main__':
-    keyboard.go()
+def pause_timer():
+    global timer_running, timer_duration, timer_start
+    timer_duration -= time.monotonic() - timer_start
+    timer_running = False
+
+def reset_timer():
+    global timer_running, timer_duration
+    timer_running = False
+    timer_duration = 25 * 60
+
+while True:
+    if not key1.value:
+        start_timer(25*60)
+        time.sleep(0.2)
+    if not key2.value:
+        if timer_running:
+            pause_timer()
+        else:
+            start_timer(timer_duration)
+        time.sleep(0.2)
+    if not key3.value:
+        reset_timer()
+        time.sleep(0.2)
+    if not key4.value:
+        start_timer(5*60)
+        time.sleep(0.2)
+
+    if timer_running:
+        elapsed = time.monotonic() - timer_start
+        remaining = timer_duration - elapsed
+        if remaining <= 0:
+            timer_running = False
+            print("Timer done!")
+        else:
+            print(f"Time remaining: {int(remaining // 60)}:{int(remaining % 60):02}", end='\r')
+    time.sleep(0.1)
